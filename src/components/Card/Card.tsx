@@ -2,10 +2,11 @@ import { StyleCard } from "./Card.styles";
 
 type CardProps = {
     children: React.ReactNode;
+    onClick?: () => void;
 }
-export default function Card({ children }: CardProps) {
+export default function Card({ children, onClick }: CardProps) {
   return (
-    <StyleCard>
+    <StyleCard onClick={onClick}>
      {children}
     </StyleCard>
   )

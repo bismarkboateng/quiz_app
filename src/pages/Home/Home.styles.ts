@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const StyledHome = styled.section`
     margin-top: 50px;
@@ -55,4 +56,9 @@ export const JsWrappper = styled(IconWrapper)`
 
 export const AcWrapper = styled(IconWrapper)`
     background-color: #F6E7FF;
+`
+
+export const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: inherit;
 `

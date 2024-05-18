@@ -1,12 +1,12 @@
 import { createContext } from "react";
 import { AppContextProviderProps } from "../types";
+import QuizData from "../data.json"
 
-const AppContext = createContext({})
-
+export const AppContext = createContext({})
 
 export const AppContextProvider = ({ children }: AppContextProviderProps) => {
     return (
-        <AppContext.Provider value={""}>
+        <AppContext.Provider value={QuizData.quizzes}>
          {children}
         </AppContext.Provider>
     )

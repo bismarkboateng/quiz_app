@@ -12,3 +12,9 @@ export const StyledThemeSelect = styled.div`
     justify-content: center;
     gap: 0.5rem;
 `;
+
+export const IconTitleWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 16px;
+`
