@@ -13,3 +13,11 @@
   src: url("./assets/fonts/Rubik-Italic-VariableFont_wght.ttf") format('truetype');
   src: url("./assets/fonts/Rubik-VariableFont_wght.ttf") format('truetype');
 }
+
+body {
+  font-family: "Rubik", sans-serif;
+  background-image: url('./assets/images/pattern-background-mobile-light.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #F4F6FA;
+}
