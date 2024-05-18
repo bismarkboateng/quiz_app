@@ -1,37 +1,20 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/Home";
-import HTML from "./pages/HTML";
-import CSS from "./pages/CSS";
-import JavaScript from "./pages/JavaScript";
-import Accessibility from "./pages/Accessibility";
+import { Route, Routes } from "react-router-dom"
+import Quiz from "./pages/Quiz"
+import Home from "./pages/Home/Home"
+import Navbar from "./components/Navbar/Navbar"
+
+import { StyledMain} from "./App.styles"
+
 
 export default function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Home />,
-    },
-    {
-      path: "/quiz-questions/html",
-      element: <HTML />,
-    },
-    {
-      path: "/quiz-questions/css",
-      element: <CSS />,
-    },
-    {
-      path: "/quiz-questions/javaScript",
-      element: <JavaScript />,
-    },
-    {
-      path: "/quiz-questions/accessibility",
-      element: <Accessibility />
-    },
-  ]);
 
   return (
-    <main>
-     <RouterProvider router={router} />
-    </main>
+    <StyledMain>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/quiz/:name" element={<Quiz />} />
+      </Routes>
+    </StyledMain>
   )
 }
