@@ -3,7 +3,8 @@ import {
   StyledHome, StyledSubtitle, StyledTitle,
   StyledWelcomeTitle, StyledDesc, StyledCardWrapper,
   StyledQuizTitle, HtmlWrapper, CssWrapper,
-  JsWrappper, AcWrapper, StyledLink
+  JsWrappper, AcWrapper, StyledLink,
+  StyledHomeContent
 } from "./Home.styles";
 import Card from "../../components/Card/Card";
 import HtmlIcon from "../../assets/images/icon-html.svg"
@@ -15,11 +16,13 @@ import AccessibilityIcon from "../../assets/images/icon-accessibility.svg"
 export default function Home() {
   return (
     <StyledHome>
-      <StyledTitle>
-        <StyledWelcomeTitle>Welcome to the</StyledWelcomeTitle>
-        <StyledSubtitle>Frontend Quiz!</StyledSubtitle>
-      </StyledTitle>
-      <StyledDesc>Pick a subject to get started.</StyledDesc>
+      <StyledHomeContent>
+        <StyledTitle>
+          <StyledWelcomeTitle>Welcome to the</StyledWelcomeTitle>
+          <StyledSubtitle>Frontend Quiz!</StyledSubtitle>
+        </StyledTitle>
+        <StyledDesc>Pick a subject to get started.</StyledDesc>
+      </StyledHomeContent>
 
       <StyledCardWrapper>
         {/* html quiz */}

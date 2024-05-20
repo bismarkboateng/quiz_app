@@ -6,7 +6,7 @@ import CssIcon from "../../assets/images/icon-css.svg"
 import JSIcon from "../../assets/images/icon-js.svg"
 import AccessibilityIcon from "../../assets/images/icon-accessibility.svg"
 
-import { StyledThemeSelect, StyledNavbar, IconTitleWrapper } from "./Navbar.styles.ts"
+import { StyledThemeSelect, StyledNavbar, IconTitleWrapper, NavImage } from "./Navbar.styles.ts"
 import { useLocation } from "react-router-dom"
 import { StyledQuizTitle } from "../../pages/Home/Home.styles.ts"
 
@@ -28,7 +28,7 @@ export default function Navbar() {
       <div>
         {quizSubject && (
           <IconTitleWrapper>
-            <img
+            <NavImage
              src={subjectToIcon[quizSubject]}
              alt={quizSubject}
              width={25}
