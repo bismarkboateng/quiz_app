@@ -30,7 +30,6 @@ export const StyledTitle = styled.div`
 `
 export const StyledWelcomeTitle = styled.div`
     font-weight: 300;
-
 `
 
 export const StyledSubtitle = styled.div`

@@ -10,6 +10,6 @@ export const StyledMain = styled.main`
     }
 
     @media screen and (min-width: 1024px) {
-        width: 95%;
+        width: 85%;
     }
 `

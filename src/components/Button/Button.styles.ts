@@ -13,6 +13,7 @@ export const StyledButton = styled.button`
     margin-top: 10px;
     padding-top: 18px;
     padding-bottom: 18px;
+    cursor: pointer;
 
     @media screen and (min-width: 768px) {
         font-size: 28px;

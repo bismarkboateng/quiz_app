@@ -7,6 +7,7 @@ import {
   ErrorMessage,
   ErrorWrapper,
   Image,
+  Result,
   ResultCard,
   ResultCardImage,
   // StyledError,
@@ -167,6 +168,7 @@ export default function Quiz() {
         <StyledSubtitle>You scored...</StyledSubtitle>
        </StyledTitle>
 
+      <Result>
        <ResultCard>
         <IconTitleWrapper>
           <ResultCardImage
@@ -189,6 +191,7 @@ export default function Quiz() {
           Play Again
         </StyledButton>
        </StyledLink>
+      </Result>
       </StyledQuiz>
     )}
     </>

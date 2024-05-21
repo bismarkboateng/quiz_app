@@ -12,12 +12,12 @@ export const StyledQuiz = styled.section`
     @media screen and (min-width: 1024px) {
         display: flex;
         flex-direction: row;
-        gap: 20px;
+        justify-content: space-between;
     }
+
 `
 
 export const StyledQuizContent = styled.div`
-
     @media screen and (min-width: 1024px) {
         width: 50%;
     }
@@ -31,6 +31,9 @@ export const StyledNumber = styled.div`
     line-height: 150%;
 
     @media screen and (min-width: 768px) {
+        font-size: 20px;
+    }
+    @media screen and (min-width: 1024px) {
         font-size: 20px;
     }
 `
@@ -123,6 +126,10 @@ export const ResultCard = styled.section`
         padding-top: 32px;
         padding-bottom: 32px;
     }
+
+    @media screen and (min-width: 1024px) {
+        margin-top: 0px;
+    }
 `
 
 export const CorrectAnswer = styled.section`
@@ -178,5 +185,14 @@ export const ErrorMessage = styled.p`
 
     @media screen and (min-width: 768px) {
         font-size: 24px;
+    }
+`
+
+export const Result = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 1024px) {
+        width: 50%;
     }
 `

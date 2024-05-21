@@ -23,6 +23,7 @@ export const StyleCard = styled.section<StyledCardProps>`
     padding: 12px;
     border-radius: 12px;
     box-shadow: -1px 5px 13px 0px #F4F6FA;
+    cursor: pointer;
 
     @media screen and (min-width: 768px) {
         border-radius: 24px;
