@@ -6,15 +6,23 @@ type CardProps = {
     selected?: boolean;
     isCorrectAnswer?: boolean | null;
     isSubmitClicked?: boolean | null;
+    tabIndex?: number;
+    onKeyDown?: (event: React.KeyboardEvent) => void;
+    isSelected?: boolean;
 }
 
-export default function Card({ children, onClick, selected, isCorrectAnswer, isSubmitClicked}: CardProps) {
+export default function Card({ children, onClick, selected,
+  isCorrectAnswer, isSubmitClicked,
+  tabIndex, onKeyDown, isSelected }: CardProps) {
   return (
     <StyleCard 
      isCorrectAnswer={isCorrectAnswer}
      selected={selected}
      onClick={onClick}
      isSubmitClicked={isSubmitClicked}
+     tabIndex={tabIndex}
+     onKeyDown={onKeyDown}
+     isSelected={isSelected}
     >
      {children}
     </StyleCard>

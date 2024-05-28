@@ -1,8 +1,15 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const StyledHome = styled.section`
+type StyledHomeProps = {
+    isSelected?: boolean;
+}
+
+
+export const StyledHome = styled.section<StyledHomeProps>`
     margin-top: 50px;
+
+
 
     @media screen and (min-width: 1024px) {
         display: flex;
@@ -28,20 +35,24 @@ export const StyledTitle = styled.div`
         font-size: 64px;
     }
 `
-export const StyledWelcomeTitle = styled.div`
+export const StyledWelcomeTitle = styled.div<StyledHomeProps>`
     font-weight: 300;
+    color: ${({ isSelected }) => (isSelected && "white;")}
 `
 
-export const StyledSubtitle = styled.div`
+export const StyledSubtitle = styled.div<StyledHomeProps>`
     font-weight: 500;
+    color: ${({ isSelected }) => (isSelected && "white;")}
 `
 
-export const StyledDesc = styled.p`
+
+export const StyledDesc = styled.p<StyledHomeProps>`
     font-size: 14px;
     font-style: italic;
-    color: #626C7F;
+    color: ${({ isSelected }) => (isSelected ? "#ABC1E1;" : "#626C7F;")}
     margin-top: 15px;
     line-height: 150%;
+
 
     @media screen and (min-width: 768px) {
         font-size: 20px;
@@ -66,10 +77,10 @@ export const StyledCardWrapper = styled.section`
     }
 `
 
-export const StyledQuizTitle = styled.h1`
+export const StyledQuizTitle = styled.h1<StyledHomeProps>`
     font-size: 18px;
-    color: #313E51;
     font-weight: 500;
+    color: ${({ isSelected }) => (isSelected ? "white;" : "#313E51;")}
 
     @media screen and (min-width: 768px) {
         font-size: 28px;

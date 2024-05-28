@@ -2,7 +2,7 @@ export interface AppContextProviderProps {
     children: React.ReactNode;
 }
 
-export type QuizData = {
+export type QuizDataProps = {
   icon: string,
   questions: {
     answer: string,
@@ -11,3 +11,10 @@ export type QuizData = {
   }[],
   title: string;
 }[]
+
+
+export type AppContextType =  {
+  isSelected: boolean;
+  setIsSelected: React.Dispatch<React.SetStateAction<boolean>>;
+  quiz: QuizDataProps;
+}
