@@ -5,6 +5,7 @@ type StyledCardProps = {
     selected?: boolean;
     isCorrectAnswer?: boolean | null;
     isSubmitClicked?: boolean | null;
+    isSelected?: boolean;
 }
 
 export const StyleCard = styled.section<StyledCardProps>`
@@ -19,10 +20,12 @@ export const StyleCard = styled.section<StyledCardProps>`
         ? "4px solid #EE5454"
         : selected && "4px solid #A729F5" 
         )};
-    background-color: #FFFFFF;
+    background-color: ${({ isSelected }) => (isSelected ? "#3B4D66;" : "#ffffff")};
     padding: 12px;
     border-radius: 12px;
-    box-shadow: -1px 5px 13px 0px #F4F6FA;
+    box-shadow: -1px 5px 13px 0px ${({ isSelected }) => (isSelected ? "" : "#F4F6FA;")}
+    border-width: ${({ isSelected }) => (isSelected && "2px;")}
+    cursor: pointer;
 
     @media screen and (min-width: 768px) {
         border-radius: 24px;
@@ -30,3 +33,5 @@ export const StyleCard = styled.section<StyledCardProps>`
     }
 
 `
+
+// box-shadow: -1px 5px 13px 0px ${({ isSelected }) => (isSelected ? "#3B4D66;" : "#F4F6FA;")};

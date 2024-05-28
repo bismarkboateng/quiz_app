@@ -1,20 +1,12 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { AppContext } from "../../context/AppContext"
 import { useLocation } from "react-router-dom"
-import { QuizData } from "../../types"
 import {
-  CorrectAnswer,
-  ErrorMessage,
-  ErrorWrapper,
-  Image,
-  ResultCard,
-  ResultCardImage,
-  // StyledError,
+  CorrectAnswer, ErrorMessage, ErrorWrapper, Image,
+  Result, ResultCard, ResultCardImage,
   StyledNumber, StyledOption, StyledOptionIndex,
   StyledOptions, StyledProgress, StyledQuestion,
-  StyledQuiz,
-  StyledQuizContent,
-  TotalQuestion
+  StyledQuiz, StyledQuizContent, TotalQuestion
 } from "./Quiz.styles"
 import Card from "../../components/Card/Card"
 import Button from "../../components/Button/Button"
@@ -23,6 +15,8 @@ import { StyledButton } from "../../components/Button/Button.styles"
 import { IconTitleWrapper } from "../../components/Navbar/Navbar.styles"
 import IconCorrect from "../../assets/images/icon-correct.svg"
 import IconError from "../../assets/images/icon-error.svg"
+import ProgressBar from "../../components/ProgressBar/ProgressBar"
+
 
 const TitleToQuiz = {
   "HTML": 0,
@@ -40,6 +34,8 @@ export default function Quiz() {
   const [isSubmitClicked, setIsSubmitClicked] = useState(false)
   const [showResult, setShowResult] = useState(false)
   const [isActualAnswer, setIsActualAnswer] = useState("")
+  const [keyboardClick, setKeyBoardClick] = useState<boolean | null>(null)
+  const { isSelected } = useContext(AppContext)
   // to check if a user clicked the submit without selecting an option
   const [clicked, setClicked] = useState(false)
   const [result, setResult] = useState({
@@ -47,7 +43,7 @@ export default function Quiz() {
     wrong: 0,
   })
 
-  const quiz: QuizData = useContext(AppContext)
+  const { quiz } = useContext(AppContext)
 
   const { pathname } = useLocation()
   const quizSubject = pathname.substring(1).split("/").pop()
@@ -58,16 +54,48 @@ export default function Quiz() {
 
   const actualAnswer = questions[activeQuestion]?.answer 
 
+  // handles keyboard events
+  useEffect(() => {
+    const handleKeyDown = (event: React.KeyboardEvent) => {
+      if (event.key === "ArrowDown") {
+        if (typeof optionClicked !== "number") {
+          setOptionClicked(0)
+        } else {
+          setOptionClicked(prev => {
+            if (prev === questions[activeQuestion].options.length - 1) {
+              return 0
+            } else {
+              return prev! + 1
+            }
+          })
+        }
+      }
 
+      if (event.key === "Enter") {
+        handleKeyBoardOptionClick(event, questions[activeQuestion].options[optionClicked!], optionClicked!)
+      }
+
+      if (event.key === " " && (typeof optionClicked === "number")) {
+        handleNext()
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown)
+
+    return () => document.removeEventListener("keydown", handleKeyDown)
+  }, [optionClicked, activeQuestion])
+  
+  // to select an option on click
   const handleOptionClick = (item: string, index: number) => {
     setOptionClicked(index);
     if (item === questions[activeQuestion].answer) {
-      setIsCorrectAnswer(true);
+      setIsCorrectAnswer(prev => prev === true ? prev : true);
     } else {
-      setIsCorrectAnswer(false)
+      setIsCorrectAnswer(prev => prev === false ? prev : false);
     }
   }
 
+  // submits an answer
   const handleSubmit = () => {
     setClicked(true)
     if (typeof optionClicked !== "number") return
@@ -81,6 +109,21 @@ export default function Quiz() {
     }
   }
 
+  // select an option with keyboard
+  const handleKeyBoardOptionClick = (event: React.KeyboardEvent, item: string, index: number) => {
+    handleOptionClick(item, index)
+    setKeyBoardClick(true)
+  }
+
+  useEffect(() => {
+    if (keyboardClick) {
+      handleSubmit()
+    }
+    setKeyBoardClick(false)
+  }, [keyboardClick])
+
+
+  // moves to the next question
   const handleNext = () => {
     if (activeQuestion === questions.length - 1) {
       setShowResult(true)
@@ -102,14 +145,14 @@ export default function Quiz() {
     {!showResult
     ?(<StyledQuiz>
       <StyledQuizContent>
-        <StyledNumber>
+        <StyledNumber isSelected={isSelected}>
           Question {activeQuestion + 1} of {questions.length}
         </StyledNumber>
-        <StyledQuestion>
+        <StyledQuestion isSelected={isSelected}>
           {questions[activeQuestion].question}
         </StyledQuestion>
         <StyledProgress>
-          progress bar here
+          <ProgressBar isSelected={isSelected} progress={activeQuestion} total={questions.length} />
         </StyledProgress>
       </StyledQuizContent>
 
@@ -121,6 +164,9 @@ export default function Quiz() {
            selected={index === optionClicked}
            isCorrectAnswer={isCorrectAnswer}
            isSubmitClicked={isSubmitClicked}
+           tabIndex={0}
+           isSelected={isSelected}
+           onKeyDown={event => handleKeyBoardOptionClick(event, item, index)}
           >
             <StyledOptionIndex
               selected={index === optionClicked}
@@ -129,7 +175,7 @@ export default function Quiz() {
             >
               {Letters[index]}
             </StyledOptionIndex>
-            <StyledOption>
+            <StyledOption isSelected={isSelected}>
               {item}
             </StyledOption>
             { index === optionClicked && isSubmitClicked && isCorrectAnswer
@@ -159,15 +205,15 @@ export default function Quiz() {
       )}
       </StyledOptions>
 
-
     </StyledQuiz>)
     : (<StyledQuiz>
        <StyledTitle>
-        <StyledWelcomeTitle>Quiz Completed</StyledWelcomeTitle>
-        <StyledSubtitle>You scored...</StyledSubtitle>
+        <StyledWelcomeTitle isSelected={isSelected}>Quiz Completed</StyledWelcomeTitle>
+        <StyledSubtitle isSelected={isSelected}>You scored...</StyledSubtitle>
        </StyledTitle>
 
-       <ResultCard>
+      <Result>
+       <ResultCard isSelected={isSelected}>
         <IconTitleWrapper>
           <ResultCardImage
             src={`/src/assets/images/${iconName}`}
@@ -175,12 +221,12 @@ export default function Quiz() {
             width={25}
             height={25}
           />
-          <StyledQuizTitle>{quizQuestions.title}</StyledQuizTitle>
+          <StyledQuizTitle isSelected={isSelected}>{quizQuestions.title}</StyledQuizTitle>
         </IconTitleWrapper>
-        <CorrectAnswer>
+        <CorrectAnswer isSelected={isSelected}>
           {result.correct}
         </CorrectAnswer>
-        <TotalQuestion>
+        <TotalQuestion isSelected={isSelected}>
           out of {questions.length}
         </TotalQuestion>
        </ResultCard>
@@ -189,6 +235,7 @@ export default function Quiz() {
           Play Again
         </StyledButton>
        </StyledLink>
+      </Result>
       </StyledQuiz>
     )}
     </>

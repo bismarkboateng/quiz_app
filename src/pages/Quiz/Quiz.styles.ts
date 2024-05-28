@@ -6,26 +6,30 @@ type StyledOptionIndexProps = {
     isSubmitClicked?: boolean | null;
 }
 
+type ThemeProps = {
+    isSelected?: boolean;
+}
+
 export const StyledQuiz = styled.section`
     margin-top: 55px;
 
     @media screen and (min-width: 1024px) {
         display: flex;
         flex-direction: row;
-        gap: 20px;
+        justify-content: space-between;
     }
+
 `
 
 export const StyledQuizContent = styled.div`
-
     @media screen and (min-width: 1024px) {
         width: 50%;
     }
 
 `
 
-export const StyledNumber = styled.div`
-    color: #626C7F;
+export const StyledNumber = styled.div<ThemeProps>`
+    color: ${({ isSelected }) => (isSelected ? "#ABC1E1;" : "#626C7F;")}
     font-size: 14px;
     font-style: italic;
     line-height: 150%;
@@ -33,12 +37,15 @@ export const StyledNumber = styled.div`
     @media screen and (min-width: 768px) {
         font-size: 20px;
     }
+    @media screen and (min-width: 1024px) {
+        font-size: 20px;
+    }
 `
 
-export const StyledQuestion = styled.div`
+export const StyledQuestion = styled.div<ThemeProps>`
     font-weight: 500;
     font-size: 20px;
-    color: #313E51;
+    color: ${({ isSelected }) => (isSelected ? "#FFFFFF;" : "#313E51;")}
     line-height: 120%;
     margin-top: 10px;
 
@@ -66,8 +73,8 @@ export const StyledOptions = styled.section`
     }
 `
 
-export const StyledOption = styled.div`
-    color: #313E51;
+export const StyledOption = styled.div<ThemeProps>`
+    color: ${({ isSelected }) => (isSelected ? "#FFFFFF;" : "#313E51;")}
     font-size: 18px;
     font-weight: 500;
 
@@ -106,32 +113,38 @@ export const StyledError = styled.div`
     margin-top: 3px;
 `
 
-export const ResultCard = styled.section`
+export const ResultCard = styled.section<ThemeProps>`
     display: flex;
     flex-direction: column;
     justify-items: center;
     align-items: center;
     gap: 16px;
-    background-color: #FFFFFF;
+    background-color: ${({ isSelected }) => (isSelected ? "#3B4D66;" : "#FFFFFF;")}
     padding: 12px;
     border-radius: 12px;
-    box-shadow: -1px 5px 13px 0px #F4F6FA;
     margin-top: 45px;
+    box-shadow: -1px 5px 13px 0px ${({ isSelected }) => ( isSelected ? "" : "#F4F6FA;")}
     margin-bottom: 3px;
 
     @media screen and (min-width: 768px) {
         padding-top: 32px;
         padding-bottom: 32px;
     }
+
+    @media screen and (min-width: 1024px) {
+        margin-top: 0px;
+    }
 `
 
-export const CorrectAnswer = styled.section`
-    color: #313E51;
+export const CorrectAnswer = styled.section<ThemeProps>`
+    color: ${({ isSelected }) => (isSelected ? "#FFFFFF;" : "#313E51;")}
     font-size: 88px;
     font-weight: 500;
 `
-export const TotalQuestion = styled.section`
-    color: #626C7F;
+
+export const TotalQuestion = styled.section<ThemeProps>`
+
+    color: ${({ isSelected }) => (isSelected ? "#ABC1E1;" : "#626C7F;")}
     font-size: 18px;
 
     @media screen and (min-width: 768px) {
@@ -178,5 +191,14 @@ export const ErrorMessage = styled.p`
 
     @media screen and (min-width: 768px) {
         font-size: 24px;
+    }
+`
+
+export const Result = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 1024px) {
+        width: 50%;
     }
 `
