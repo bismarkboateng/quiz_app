@@ -19,6 +19,8 @@ export const StyledHome = styled.section<StyledHomeProps>`
     @media screen and (min-width: 1280px) {
         margin-top: 10%;
     }
+
+
 `
 
 export const StyledHomeContent = styled.div`

@@ -27,11 +27,11 @@ export const StyleCard = styled.section<StyledCardProps>`
     box-shadow: -1px 5px 13px 0px ${({ isSelected }) => (isSelected ? "#313E51;" : "#F4F6FA;")};
     cursor: pointer;
 
+    
+
     @media screen and (min-width: 768px) {
         border-radius: 24px;
         gap: 32px;
     }
 
 `
-
-// box-shadow: -1px 5px 13px 0px ${({ isSelected }) => (isSelected ? "#3B4D66;" : "#F4F6FA;")};

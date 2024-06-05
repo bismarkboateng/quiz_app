@@ -114,6 +114,10 @@ export const StyledOptionIndex = styled.div<StyledOptionIndexProps>`
     border-radius: 6px;
     padding: 12px 16px;
 
+    &:hover {
+        
+    }
+
     @media screen and (min-width: 768px) {
         font-size: 28px;
     }

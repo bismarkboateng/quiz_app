@@ -1,42 +1,23 @@
 import { useContext, useEffect, useState } from "react"
 import { AppContext } from "../../context/AppContext"
 import { useLocation } from "react-router-dom"
-import HtmlIcon from "../../assets/images/icon-html.svg"
-import CssIcon from "../../assets/images/icon-css.svg"
-import JSIcon from "../../assets/images/icon-js.svg"
-import AccessibilityIcon from "../../assets/images/icon-accessibility.svg"
 import {
   CorrectAnswer, ErrorMessage, ErrorWrapper, Image,
-  Result, ResultCard, ResultCardImage,
+  Result, ResultCard,
   StyledNumber, StyledOption, StyledOptionIndex,
   StyledOptions, StyledProgress, StyledQuestion,
   StyledQuiz, StyledQuizContent, TotalQuestion
 } from "./Quiz.styles"
 import Card from "../../components/Card/Card"
 import Button from "../../components/Button/Button"
-import { StyledLink, StyledQuizTitle, StyledSubtitle, StyledTitle, StyledWelcomeTitle } from "../Home/Home.styles"
+import { AcWrapper, CssWrapper, HtmlWrapper, JsWrappper, StyledLink, StyledQuizTitle, StyledSubtitle, StyledTitle, StyledWelcomeTitle } from "../Home/Home.styles"
 import { StyledButton } from "../../components/Button/Button.styles"
 import { IconTitleWrapper } from "../../components/Navbar/Navbar.styles"
 import IconCorrect from "../../assets/images/icon-correct.svg"
 import IconError from "../../assets/images/icon-error.svg"
 import ProgressBar from "../../components/ProgressBar/ProgressBar"
+import { subjectToIcon, TitleToQuiz, Letters } from "../../lib/constant"
 
-
-const TitleToQuiz = {
-  "HTML": 0,
-  "CSS": 1,
-  "JavaScript": 2,
-  "Accessibility": 3
-}
-
-const subjectToIcon = {
-  "HTML": HtmlIcon,
-  "CSS": CssIcon,
-  "JavaScript": JSIcon,
-  "Accessibility": AccessibilityIcon
-}
-
-const Letters = ["A", "B", "C", "D"]
 
 export default function Quiz() {
   const [activeQuestion, setActiveQuestion] = useState(0)
@@ -228,12 +209,46 @@ export default function Quiz() {
       <Result>
        <ResultCard isSelected={isSelected}>
         <IconTitleWrapper>
-          <ResultCardImage
-            src={subjectToIcon[quizSubject as keyof typeof subjectToIcon]}
-            alt={quizSubject}
-            width={25}
-            height={25}
-          />
+          {quizSubject === "HTML" && (
+            <HtmlWrapper>
+              <img
+                src={subjectToIcon[quizSubject as keyof typeof subjectToIcon]}
+                alt={quizSubject}
+                width={25}
+                height={25}
+              />
+            </HtmlWrapper>
+          )}
+          {quizSubject === "CSS" && (
+            <CssWrapper>
+              <img
+                src={subjectToIcon[quizSubject as keyof typeof subjectToIcon]}
+                alt={quizSubject}
+                width={25}
+                height={25}
+              />
+            </CssWrapper>
+          )}
+          {quizSubject === "JavaScript" && (
+            <JsWrappper>
+              <img
+                src={subjectToIcon[quizSubject as keyof typeof subjectToIcon]}
+                alt={quizSubject}
+                width={25}
+                height={25}
+              />
+            </JsWrappper>
+          )}
+          {quizSubject === "Accessibility" && (
+            <AcWrapper>
+              <img
+               src={subjectToIcon[quizSubject as keyof typeof subjectToIcon]}
+               alt={quizSubject}
+               width={25}
+               height={25}
+              />
+            </AcWrapper>
+          )}
           <StyledQuizTitle isSelected={isSelected}>{quizQuestions.title}</StyledQuizTitle>
         </IconTitleWrapper>
         <CorrectAnswer isSelected={isSelected}>
