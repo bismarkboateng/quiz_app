@@ -20,11 +20,11 @@ export const StyleCard = styled.section<StyledCardProps>`
         ? "4px solid #EE5454"
         : selected && "4px solid #A729F5" 
         )};
+    
     background-color: ${({ isSelected }) => (isSelected ? "#3B4D66;" : "#ffffff")};
     padding: 12px;
     border-radius: 12px;
-    box-shadow: -1px 5px 13px 0px ${({ isSelected }) => (isSelected ? "" : "#F4F6FA;")}
-    border-width: ${({ isSelected }) => (isSelected && "2px;")}
+    box-shadow: -1px 5px 13px 0px ${({ isSelected }) => (isSelected ? "#313E51;" : "#F4F6FA;")};
     cursor: pointer;
 
     @media screen and (min-width: 768px) {

@@ -9,19 +9,21 @@ type StyledHomeProps = {
 export const StyledHome = styled.section<StyledHomeProps>`
     margin-top: 50px;
 
-
-
     @media screen and (min-width: 1024px) {
         display: flex;
         flex-direction: row;
-        gap: 20px;
+        justify-content: space-between;
+        gap: 32px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        margin-top: 10%;
     }
 `
 
 export const StyledHomeContent = styled.div`
     display: flex;
     flex-direction: column;
-    
     @media screen and (min-width: 1024px) {
         width: 50%;
     }

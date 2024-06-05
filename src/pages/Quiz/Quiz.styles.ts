@@ -14,16 +14,24 @@ export const StyledQuiz = styled.section`
     margin-top: 55px;
 
     @media screen and (min-width: 1024px) {
+        margin-top: 20px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        gap: 50px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        margin-top: 60px;
     }
 
 `
 
 export const StyledQuizContent = styled.div`
+
     @media screen and (min-width: 1024px) {
         width: 50%;
+        height: max-content;
     }
 
 `
@@ -55,14 +63,18 @@ export const StyledQuestion = styled.div<ThemeProps>`
 `
 
 export const StyledProgress = styled.div`
-    margin: 20px 0;    
+    margin: 20px 0;   
+    
+    @media screen and (min-width: 1024px) {
+        margin-top: 25%;
+    }
 `
 
 export const StyledOptions = styled.section`
     display: flex;
     flex-direction: column;
-    gap: 10px;
     margin-top: 20px;
+    gap: 10px;
 
     @media screen and (min-width: 768px) {
         gap: 20px;
@@ -70,6 +82,7 @@ export const StyledOptions = styled.section`
 
     @media screen and (min-width: 1024px) {
         width: 50%;
+        margin-top: 0;
     }
 `
 

@@ -48,7 +48,7 @@ export default function Quiz() {
   const { pathname } = useLocation()
   const quizSubject = pathname.substring(1).split("/").pop()
   
-  const quizQuestions = quiz[TitleToQuiz[quizSubject]]
+  const quizQuestions = quiz[TitleToQuiz[quizSubject as keyof typeof TitleToQuiz]]
 
   const questions = quizQuestions.questions
 

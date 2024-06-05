@@ -21,4 +21,13 @@ export const StyledButton = styled.button`
         padding: 30px 0;
         border-radius: 24px;
     }
+
+    @media screen and (min-width: 1024px) {
+        padding: 25px 0;
+        margin-top: 0;
+    }
+
+    @media screen and (min-width: 1280px) {
+        margin-top: 25px;
+    }
 `
