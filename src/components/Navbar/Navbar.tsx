@@ -36,7 +36,7 @@ export default function Navbar() {
         {quizSubject && (
           <IconTitleWrapper>
             <NavImage
-             src={subjectToIcon[quizSubject]}
+             src={subjectToIcon[quizSubject as keyof typeof subjectToIcon]}
              alt={quizSubject}
              width={25}
              height={25}

@@ -7,7 +7,7 @@ type CardProps = {
     isCorrectAnswer?: boolean | null;
     isSubmitClicked?: boolean | null;
     tabIndex?: number;
-    onKeyDown?: (event: React.KeyboardEvent) => void;
+    onKeyDown?: () => void;
     isSelected?: boolean;
 }
 

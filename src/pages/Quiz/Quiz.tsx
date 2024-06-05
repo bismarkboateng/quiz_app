@@ -56,7 +56,7 @@ export default function Quiz() {
 
   // handles keyboard events
   useEffect(() => {
-    const handleKeyDown = (event: React.KeyboardEvent) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowDown") {
         if (typeof optionClicked !== "number") {
           setOptionClicked(0)
@@ -72,7 +72,7 @@ export default function Quiz() {
       }
 
       if (event.key === "Enter") {
-        handleKeyBoardOptionClick(event, questions[activeQuestion].options[optionClicked!], optionClicked!)
+        handleKeyBoardOptionClick(questions[activeQuestion].options[optionClicked!], optionClicked!)
       }
 
       if (event.key === " " && (typeof optionClicked === "number")) {
@@ -110,7 +110,7 @@ export default function Quiz() {
   }
 
   // select an option with keyboard
-  const handleKeyBoardOptionClick = (event: React.KeyboardEvent, item: string, index: number) => {
+  const handleKeyBoardOptionClick = (item: string, index: number) => {
     handleOptionClick(item, index)
     setKeyBoardClick(true)
   }
@@ -166,7 +166,7 @@ export default function Quiz() {
            isSubmitClicked={isSubmitClicked}
            tabIndex={0}
            isSelected={isSelected}
-           onKeyDown={event => handleKeyBoardOptionClick(event, item, index)}
+           onKeyDown={() => handleKeyBoardOptionClick(item, index)}
           >
             <StyledOptionIndex
               selected={index === optionClicked}
