@@ -1,6 +1,10 @@
 import { useContext, useEffect, useState } from "react"
 import { AppContext } from "../../context/AppContext"
 import { useLocation } from "react-router-dom"
+import HtmlIcon from "../../assets/images/icon-html.svg"
+import CssIcon from "../../assets/images/icon-css.svg"
+import JSIcon from "../../assets/images/icon-js.svg"
+import AccessibilityIcon from "../../assets/images/icon-accessibility.svg"
 import {
   CorrectAnswer, ErrorMessage, ErrorWrapper, Image,
   Result, ResultCard, ResultCardImage,
@@ -23,6 +27,13 @@ const TitleToQuiz = {
   "CSS": 1,
   "JavaScript": 2,
   "Accessibility": 3
+}
+
+const subjectToIcon = {
+  "HTML": HtmlIcon,
+  "CSS": CssIcon,
+  "JavaScript": JSIcon,
+  "Accessibility": AccessibilityIcon
 }
 
 const Letters = ["A", "B", "C", "D"]
@@ -139,7 +150,9 @@ export default function Quiz() {
   }
 
   const iconName = quizQuestions.icon.split("/").pop()
+  console.log(quizQuestions.icon)
 
+  console.log(iconName)
   return (
     <>
     {!showResult
@@ -216,7 +229,7 @@ export default function Quiz() {
        <ResultCard isSelected={isSelected}>
         <IconTitleWrapper>
           <ResultCardImage
-            src={`/src/assets/images/${iconName}`}
+            src={subjectToIcon[quizSubject as keyof typeof subjectToIcon]}
             alt={quizSubject}
             width={25}
             height={25}
